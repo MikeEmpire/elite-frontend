@@ -1,19 +1,17 @@
 .fade-enter {
   opacity: 0;
   z-index: 1;
-  transition: all 250ms ease-in;
-  transform: translatey(0px);
+  transition: all 500ms ease-in;
 }
 
 .fade-enter-active {
   opacity: 1;
-  transition: all 250ms ease-in;
+  transition: all 500ms ease-in;
 }
 
 .fade-exit {
   opacity: 0;
-  transition: all 125ms ease-out;
-  transform: translatey(-1000px);
+  transition: all 250ms ease-out;
 }
 
 @keyframes float {

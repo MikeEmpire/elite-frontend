@@ -1,11 +1,36 @@
+@import "../utilities/variables";
+@import "../utilities/animations";
+
 nav.elite--nav {
   background-color: black;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 a.nav--link.nav-link {
   color: white !important;
+  font-family: $font-1;
+  font-size: x-large;
+  letter-spacing: -0.6px;
+  transition: all .3s;
+  cursor: pointer;
+  &:hover {
+    color: $gold !important;
+  }
 }
 
 a.nav--link.navbar-brand {
-  color: white;
+  color: $gold;
+  font-family: $font-1;
+  font-size: 3em;
+}
+
+a.dropdown-toggle.nav-link {
+  color: white !important;
+}
+
+a.dropdown-toggle.nav-link {
+  font-family: Hyogo;
+  color: $gold !important;
+  margin-top: 6px;
 }

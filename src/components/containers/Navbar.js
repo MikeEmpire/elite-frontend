@@ -20,32 +20,36 @@ const Navigation = () => {
   const toggle = () => navIsOpen(!isOpen);
 
   return (
-    <Navbar className="elite--nav" light expand="sm">
+    <Navbar className="elite--nav" light expand="lg">
       <NavbarBrand className="nav--link">Elite</NavbarBrand>
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
         <Nav className="mr-auto" navbar>
           <NavItem>
-            <NavLink className="nav--link" href="/components/">Components</NavLink>
+            <NavLink className="nav--link">Music</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink className="nav--link">
-              GitHub
-            </NavLink>
+            <NavLink className="nav--link">Sports</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink className="nav--link">Style</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink className="nav--link">Culture</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink className="nav--link">Entertainment</NavLink>
           </NavItem>
           <UncontrolledDropdown nav inNavbar>
             <DropdownToggle nav caret>
-              Options
+              Follow Elite
             </DropdownToggle>
             <DropdownMenu right>
-              <DropdownItem>Option 1</DropdownItem>
-              <DropdownItem>Option 2</DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem>Reset</DropdownItem>
+              <DropdownItem>Twitter</DropdownItem>
+              <DropdownItem>Instagram</DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         </Nav>
-        <NavbarText>Simple Text</NavbarText>
       </Collapse>
     </Navbar>
   );
