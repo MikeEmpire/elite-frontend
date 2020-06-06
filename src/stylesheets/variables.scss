@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,300;1,400&display=swap");
+
+@font-face {
+  font-family: "Hyogo";
+  src: url("./fonts/HyogoDemo.eot");
+  /* IE9 Compat Modes */
+  src:
+        /* IE6-IE8 */
+        /* url('webfont.woff2') format('woff2'), */
+        /* Super Modern Browsers */ url("./fonts/HyogoDemo.woff")
+      format("woff"),
+    /* Pretty Modern Browsers */ url("./fonts/HyogoDemo.ttf") format("truetype"),
+    /* Safari, Android, iOS */ url("./fonts/HyogoDemo.svg") format("svg");
+  /* Legacy iOS */
+}
+
+$font-1: "Hyogo";
+$font-2: "Montserrat"
