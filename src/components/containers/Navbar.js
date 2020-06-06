@@ -14,22 +14,22 @@ import {
   NavbarText,
 } from "reactstrap";
 
-const Navigation = (props) => {
+const Navigation = () => {
   const [isOpen, navIsOpen] = useState(false);
 
   const toggle = () => navIsOpen(!isOpen);
 
   return (
-    <Navbar light expand="sm">
-      <NavbarBrand href="/">Elite</NavbarBrand>
+    <Navbar className="elite--nav" light expand="sm">
+      <NavbarBrand className="nav--link">Elite</NavbarBrand>
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
         <Nav className="mr-auto" navbar>
           <NavItem>
-            <NavLink href="/components/">Components</NavLink>
+            <NavLink className="nav--link" href="/components/">Components</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="https://github.com/reactstrap/reactstrap">
+            <NavLink className="nav--link">
               GitHub
             </NavLink>
           </NavItem>
