@@ -22,7 +22,7 @@ const Navigation = () => {
   return (
     <Navbar className="elite--nav" light expand="lg">
       <NavbarBrand className="nav--link">Elite</NavbarBrand>
-      <NavbarToggler onClick={toggle} />
+      <NavbarToggler className="toggler" onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
         <Nav className="mr-auto" navbar>
           <NavItem>
