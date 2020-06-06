@@ -1,0 +1,42 @@
+@mixin fade-transition {
+  .fade-enter {
+    opacity: 0;
+    z-index: 1;
+  }
+  
+  .fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 250ms ease-in;
+  }
+}
+
+@keyframes float {
+	0% {
+    box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+    text-shadow: -4px 3px rgba(222, 163, 13, 0.5);
+		transform: translatey(0px);
+	}
+	50% {
+    box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
+    text-shadow: -4px 3px rgba(222, 163, 13, 0.2);
+		transform: translatey(-5px);
+	}
+	100% {
+    box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+    text-shadow: -4px 3px rgba(222, 163, 13, 0.5);
+		transform: translatey(0px);
+	}
+}
+
+
+@keyframes text-shadow-glow {
+  0% {
+    text-shadow: -2px 3px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    text-shadow: -2px 3px rgba(255, 255, 255, 0.1);
+  }
+  100% {
+    text-shadow: -2px 3px rgba(255, 255, 255, 0.3);
+  }
+}
