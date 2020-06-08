@@ -1,6 +1,5 @@
 import React, { Component, createRef, Fragment } from "react";
 import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
-import JoditEditor from "jodit-react";
 
 import Navbar from "./Navbar";
 import STORY_CATEGORIES from "../../constants/STORY_CATEGORIES";

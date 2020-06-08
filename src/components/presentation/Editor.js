@@ -5,7 +5,11 @@ import JoditEditor from "jodit-react";
 const Editor = (props) => {
   const { handleChange, stateContent } = props;
   const editor = useRef(null);
-  const [content, setContent] = useState("");
+  let [content, setContent] = useState("");
+
+  if (content === '' && stateContent.length > 1) {
+    content = stateContent
+  }
 
   const isSaved = content === stateContent;
 

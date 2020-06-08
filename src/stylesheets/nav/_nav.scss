@@ -9,11 +9,13 @@ nav.elite--nav {
 
 a.nav--link.nav-link {
   color: white !important;
-  font-family: $font-1;
-  font-size: x-large;
-  letter-spacing: -0.6px;
+  font-family: $font-3;
+  font-size: xx-large;
+  letter-spacing: 2px;
   transition: all .3s;
   cursor: pointer;
+  font-weight: bold;
+
   &:hover {
     color: $gold !important;
   }
