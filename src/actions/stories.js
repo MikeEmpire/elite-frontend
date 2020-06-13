@@ -13,7 +13,6 @@ export const getStories = () => (dispatch) => {
     .get(`${apiUrl}/api/stories`)
     .then((res) => {
       nprogress.done();
-
       return dispatch({ type: GET_STORIES_SUCCESS, payload: res.data });
     })
     .catch((err) => {

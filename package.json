@@ -48,5 +48,6 @@
   },
   "devDependencies": {
     "node-sass": "^4.14.1"
-  }
+  },
+  "proxy": "https://elite-api.michaelolie.com"
 }
