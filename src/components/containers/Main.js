@@ -2,22 +2,27 @@ import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
 import { connect } from "react-redux";
 
-import Navbar from "../containers/Navbar";
-
 import { getStories } from "../../actions/stories";
 import { bindActionCreators } from "redux";
+
+import Navbar from "./Navbar";
+import Stories from "../presentation/Stories";
+
 class Main extends Component {
   componentDidMount() {
     this.props.getStories();
   }
   render() {
-    console.log(this.props);
+    const { stories } = this.props;
     return (
       <div className="home--content">
         <Navbar />
-        <Container>
+        <Container className="main--section">
           <Row>
-            <Col md={8}>Featured Content</Col>
+            <Col md={8}>
+              <Stories stories={stories} />
+            </Col>
+
             <Col md={4}>Side Content</Col>
           </Row>
         </Container>
@@ -29,7 +34,7 @@ class Main extends Component {
 export default connect(
   (state) => {
     return {
-      stories: state.stories,
+      stories: state.stories.stories,
     };
   },
   (dispatch) =>

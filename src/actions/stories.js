@@ -26,3 +26,29 @@ export const getStories = () => (dispatch) => {
       });
     });
 };
+
+export const CREATE_STORY_REQUEST = "CREATE_STORY_REQUEST";
+export const CREATE_STORY_SUCCESS = "CREATE_STORY_SUCCESS";
+export const CREATE_STORY_FAILURE = "CREATE_STORY_FAILURE";
+export const createStory = (story) => (dispatch) => {
+  dispatch({ type: CREATE_STORY_REQUEST });
+  nprogress.start();
+  return axios
+    .post(`${apiUrl}/api/stories`, {
+      ...story,
+    })
+    .then((res) => {
+      nprogress.done();
+      return dispatch({ type: CREATE_STORY_SUCCESS, payload: res.data });
+    })
+    .catch((err) => {
+      nprogress.done();
+      nprogress.remove();
+
+      return dispatch({
+        type: CREATE_STORY_FAILURE,
+        payload: err,
+        error: true,
+      });
+    });
+};

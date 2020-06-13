@@ -1,17 +1,8 @@
+@import './base/base';
+
+@import './components/splash.scss';
+@import './components/nav.scss';
+@import "./components/posts.scss";
+
 @import './utilities/animations';
 @import './utilities/variables';
-
-body {
-  font-family: $font-1;
-}
-
-@import './splash/splash.scss';
-@import './nav/nav.scss';
-
-a {
-  text-decoration:  none;
-}
-
-.font-2 {
-  font-family: $font-2 !important;
-}

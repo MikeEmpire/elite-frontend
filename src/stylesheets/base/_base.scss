@@ -1,0 +1,13 @@
+@import "../utilities/variables";
+
+body {
+  font-family: $font-1;
+}
+
+a {
+  text-decoration: none;
+}
+
+.font-2 {
+  font-family: $font-2 !important;
+}
