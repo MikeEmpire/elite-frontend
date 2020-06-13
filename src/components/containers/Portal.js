@@ -1,5 +1,14 @@
 import React, { Component, createRef, Fragment } from "react";
-import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
+import {
+  Button,
+  Container,
+  Form,
+  FormGroup,
+  Input,
+  Label,
+  Badge,
+} from "reactstrap";
+import ImageUploader from "react-images-upload";
 
 import Navbar from "./Navbar";
 import STORY_CATEGORIES from "../../constants/STORY_CATEGORIES";
@@ -12,12 +21,20 @@ class Portal extends Component {
     content: "",
     title: "",
     category: "",
+    coverImage: "",
+    coverImageName: "",
     showPreview: false,
   };
 
   editorRef = createRef();
 
   handleState = (state, value) => this.setState({ [state]: value });
+
+  onDrop = (pictureFiles, pictureDataURLs) =>
+    this.setState({
+      coverImageName: pictureFiles[0].name,
+      coverImage: pictureDataURLs[0],
+    });
 
   render() {
     const options = STORY_CATEGORIES.map((category) => (
@@ -58,6 +75,37 @@ class Portal extends Component {
                     type="text"
                     onBlur={(e) => this.handleState("title", e.target.value)}
                   />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="exampleFile">Cover Image</Label>
+                  {this.state.coverImage !== "" &&
+                  this.state.coverImageName !== "" ? (
+                    <div>
+                      <img
+                        style={{ display: "block", width: "50%" }}
+                        src={this.state.coverImage}
+                      />
+                      <Badge
+                        color="info"
+                        onClick={() =>
+                          this.setState({
+                            coverImageName: "",
+                            coverImage: "",
+                          })
+                        }
+                      >
+                        Remove Image
+                      </Badge>
+                    </div>
+                  ) : (
+                    <ImageUploader
+                      withIcon
+                      buttonText="Select Image"
+                      onChange={this.onDrop}
+                      imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+                      maxFileSize={5242880}
+                    />
+                  )}
                 </FormGroup>
                 <FormGroup>
                   <Label>Category</Label>
