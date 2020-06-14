@@ -20,6 +20,7 @@ class Portal extends Component {
   state = {
     content: "",
     title: "",
+    subtitle: "",
     category: "",
     coverImage: "",
     coverImageName: "",
@@ -43,37 +44,60 @@ class Portal extends Component {
       </option>
     ));
 
-    const { content, title, category, showPreview } = this.state;
+    const {
+      content,
+      subtitle,
+      coverImage,
+      title,
+      category,
+      showPreview,
+    } = this.state;
 
     const readyToSubmit =
       content &&
       content.length > 10 &&
       title &&
       title.length > 10 &&
-      category !== "";
-
-    const storyInfo = {
-      content,
-      title,
-      category,
-    };
+      category !== "" &&
+      subtitle &&
+      subtitle.length > 10 &&
+      coverImage &&
+      coverImage.length > 10;
 
     return (
       <div>
         <Navbar />
         <Container>
           {showPreview ? (
-            <StoryPreview storyInfo={storyInfo} />
+            <StoryPreview storyInfo={this.state} />
           ) : (
             <Fragment>
               <h1>Create A Story Below</h1>
+              {readyToSubmit && (
+                <Button
+                  color="primary"
+                  onClick={() => this.handleState("showPreview", !showPreview)}
+                >
+                  {showPreview ? "Edit Story" : "Show Preview"}
+                </Button>
+              )}
               <Form>
                 <FormGroup>
                   <Label>Story Title</Label>
                   <Input
                     placeholder="Story Title Goes here"
                     type="text"
-                    onBlur={(e) => this.handleState("title", e.target.value)}
+                    value={title}
+                    onChange={(e) => this.handleState("title", e.target.value)}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label>Subtitle</Label>
+                  <Input
+                    placeholder="Subtitle Goes here"
+                    type="text"
+                    value={subtitle}
+                    onChange={(e) => this.handleState("subtitle", e.target.value)}
                   />
                 </FormGroup>
                 <FormGroup>
@@ -102,7 +126,7 @@ class Portal extends Component {
                       withIcon
                       buttonText="Select Image"
                       onChange={this.onDrop}
-                      imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+                      imgExtension={[".jpg", ".gif", ".png", ".gif", ".webp"]}
                       maxFileSize={5242880}
                     />
                   )}
@@ -114,6 +138,7 @@ class Portal extends Component {
                     onChange={(e) =>
                       this.handleState("category", e.target.value)
                     }
+                    value={category}
                   >
                     <option value=""></option>
                     {options}
