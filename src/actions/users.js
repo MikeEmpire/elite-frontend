@@ -36,11 +36,11 @@ export const signIn = (submitObj) => (dispatch) => {
   return axios
     .post(`${apiUrl}/api/users/signin`, submitObj)
     .then((res) => {
-      localStorage.removeItem('token')
+      localStorage.removeItem("token");
       nprogress.done();
       // set local storage token
-      const { token } = res.data
-      localStorage.setItem('token', token)
+      const { token } = res.data;
+      localStorage.setItem("token", token);
       return dispatch({ type: SIGN_IN_SUCCESS, payload: res.data });
       // redirect to /portal
     })
@@ -50,6 +50,34 @@ export const signIn = (submitObj) => (dispatch) => {
 
       return dispatch({
         type: SIGN_IN_FAILURE,
+        payload: err,
+        error: true,
+      });
+    });
+};
+
+export const AUTH_CHECK_REQUEST = "AUTH_CHECK_REQUEST";
+export const AUTH_CHECK_SUCCESS = "AUTH_CHECK_SUCCESS";
+export const AUTH_CHECK_FAILURE = "AUTH_CHECK_FAILURE";
+export const authCheck = () => (dispatch) => {
+  dispatch({ type: AUTH_CHECK_REQUEST });
+  nprogress.start();
+  const token = localStorage.getItem("token");
+  return axios
+    .post(`${apiUrl}/api/users/check`, {}, {
+      headers: {
+        Authorization: token,
+      },
+    })
+    .then((res) => {
+      return dispatch({ type: AUTH_CHECK_SUCCESS, payload: res.data });
+    })
+    .catch((err) => {
+      nprogress.done();
+      nprogress.remove();
+
+      return dispatch({
+        type: AUTH_CHECK_FAILURE,
         payload: err,
         error: true,
       });

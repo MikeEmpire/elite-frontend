@@ -9,12 +9,13 @@ import Navbar from "./Navbar";
 import SignUpForm from "../presentation/SignUpForm";
 
 import { signIn } from "../../actions/users";
+import { TOAST_ERROR, TOAST_SUCCESS } from "../../constants/TOAST_CONFIG";
 
 class SignIn extends Component {
   state = {
     email: "",
     password: "",
-    loading: false
+    loading: false,
   };
   handleSignIn = () => {
     const { toastManager } = this.props;
@@ -27,17 +28,11 @@ class SignIn extends Component {
     });
     return this.props.signIn(submitObject).then((res) => {
       if (res.type === "SIGN_IN_SUCCESS") {
-        toastManager.add("Successfully logged in!", {
-          appearance: "success",
-          autoDismiss: true,
-        });
+        toastManager.add("Successfully logged in!", TOAST_SUCCESS);
         return this.props.history.push("/portal");
       }
       const { message } = res.payload.response.data;
-      toastManager.add(message, {
-        appearance: "error",
-        autoDismiss: true,
-      });
+      toastManager.add(message, TOAST_ERROR);
       return this.setState({
         loading: false,
         showError: true,

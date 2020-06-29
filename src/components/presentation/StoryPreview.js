@@ -4,7 +4,7 @@ import parse from "html-react-parser";
 
 const StoryPreview = (props) => {
   const { storyInfo } = props;
-  const { content, title, category, coverImage } = storyInfo;
+  const { content, title, category, coverImageUrl } = storyInfo;
 
   return (
     <Container>
@@ -18,7 +18,7 @@ const StoryPreview = (props) => {
           <img
             alt="Featured article for elite"
             className="story--image"
-            src={coverImage}
+            src={coverImageUrl}
           />
           <h6 className="story--category">{category}</h6>
           <h1 className="story--title">{title}</h1>

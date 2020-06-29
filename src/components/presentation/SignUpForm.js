@@ -2,7 +2,6 @@ import React from "react";
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 
 const SignUpForm = (props) => {
-  // const { addToast } = useToasts();
   const { handleConfirm, state, updateState } = props;
   const { loading, email, password } = state;
   

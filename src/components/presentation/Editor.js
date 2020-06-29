@@ -7,8 +7,8 @@ const Editor = (props) => {
   const editor = useRef(null);
   let [content, setContent] = useState("");
 
-  if (content === '' && stateContent.length > 1) {
-    content = stateContent
+  if (content === "" && stateContent.length > 1) {
+    content = stateContent;
   }
 
   const isSaved = content === stateContent;
@@ -19,6 +19,15 @@ const Editor = (props) => {
 
   return (
     <Fragment>
+      {content.length > 10 && (
+        <Button
+          disabled={isSaved}
+          color="success"
+          onClick={() => handleChange("content", content)}
+        >
+          {isSaved ? "Saved!" : "Save"}
+        </Button>
+      )}
       <JoditEditor
         ref={editor}
         value={content}

@@ -8,13 +8,26 @@ import {
   Label,
   Badge,
 } from "reactstrap";
-import ImageUploader from "react-images-upload";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { withRouter } from "react-router-dom";
+import { withToastManager } from "react-toast-notifications";
 
 import Navbar from "./Navbar";
-import STORY_CATEGORIES from "../../constants/STORY_CATEGORIES";
 
 import Editor from "../presentation/Editor";
 import StoryPreview from "../presentation/StoryPreview";
+
+import { authCheck } from "../../actions/users";
+import { uploadImageV2 } from "../../actions/images";
+import { createStory } from "../../actions/stories";
+
+import STORY_CATEGORIES from "../../constants/STORY_CATEGORIES";
+import { TOAST_ERROR, TOAST_SUCCESS } from "../../constants/TOAST_CONFIG";
+
+import s3 from "../../utils/s3";
+
+import checkToken from "../../helpers/checkToken";
 
 class Portal extends Component {
   state = {
@@ -22,20 +35,60 @@ class Portal extends Component {
     title: "",
     subtitle: "",
     category: "",
-    coverImage: "",
-    coverImageName: "",
+    coverImageUrl: "",
     showPreview: false,
+    loading: false,
   };
 
   editorRef = createRef();
 
+  componentDidMount() {
+    checkToken(this.props);
+  }
+
   handleState = (state, value) => this.setState({ [state]: value });
 
-  onDrop = (pictureFiles, pictureDataURLs) =>
+  saveStory = () => {
     this.setState({
-      coverImageName: pictureFiles[0].name,
-      coverImage: pictureDataURLs[0],
+      ...this.state,
+      loading: true,
     });
+    const { id } = this.props.auth;
+    const { toastManager } = this.props;
+    const { title, subtitle, content, coverImageUrl, category } = this.state;
+    const storyObj = {
+      title,
+      subtitle,
+      body: content,
+      category,
+      image: coverImageUrl,
+      created_by: id,
+    };
+    return this.props.createStory(storyObj).then((res) => {
+      this.setState({
+        loading: false,
+      });
+      if (res.type === "CREATE_STORY_SUCCESS") {
+        toastManager.add("Successfully created the story!", TOAST_SUCCESS);
+        return this.props.history.push("/main");
+      }
+      return toastManager.add(
+        "There was an error creating the story, please go over the info again or hit Mike up",
+        TOAST_ERROR
+      );
+    });
+  };
+
+  handleUpload = () => {
+    const file = this.uploadInput.files[0];
+    // Split the filename to get the name and type
+    const fileName = file.name.split(".")[0];
+    return s3.uploadFile(file, fileName).then((res) =>
+      this.setState({
+        coverImageUrl: res.location,
+      })
+    );
+  };
 
   render() {
     const options = STORY_CATEGORIES.map((category) => (
@@ -47,7 +100,7 @@ class Portal extends Component {
     const {
       content,
       subtitle,
-      coverImage,
+      coverImageUrl,
       title,
       category,
       showPreview,
@@ -61,8 +114,8 @@ class Portal extends Component {
       category !== "" &&
       subtitle &&
       subtitle.length > 10 &&
-      coverImage &&
-      coverImage.length > 10;
+      coverImageUrl &&
+      coverImageUrl.length > 10;
 
     return (
       <div>
@@ -97,38 +150,46 @@ class Portal extends Component {
                     placeholder="Subtitle Goes here"
                     type="text"
                     value={subtitle}
-                    onChange={(e) => this.handleState("subtitle", e.target.value)}
+                    onChange={(e) =>
+                      this.handleState("subtitle", e.target.value)
+                    }
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label for="exampleFile">Cover Image</Label>
-                  {this.state.coverImage !== "" &&
-                  this.state.coverImageName !== "" ? (
+                  {this.state.url !== "" && <img src={this.state.url} />}
+                </FormGroup>
+                <FormGroup>
+                  <Label for="exampleFile" style={{ display: "block" }}>
+                    Cover Image
+                  </Label>
+                  {this.state.coverImageUrl === "" ? (
                     <div>
+                      <input
+                        onChange={() => this.handleUpload()}
+                        ref={(ref) => {
+                          this.uploadInput = ref;
+                        }}
+                        type="file"
+                      />
+                    </div>
+                  ) : (
+                    <Fragment>
                       <img
+                        alt="Placeholder for story"
                         style={{ display: "block", width: "50%" }}
-                        src={this.state.coverImage}
+                        src={this.state.coverImageUrl}
                       />
                       <Badge
                         color="info"
                         onClick={() =>
                           this.setState({
-                            coverImageName: "",
-                            coverImage: "",
+                            coverImageUrl: "",
                           })
                         }
                       >
                         Remove Image
                       </Badge>
-                    </div>
-                  ) : (
-                    <ImageUploader
-                      withIcon
-                      buttonText="Select Image"
-                      onChange={this.onDrop}
-                      imgExtension={[".jpg", ".gif", ".png", ".gif", ".webp"]}
-                      maxFileSize={5242880}
-                    />
+                    </Fragment>
                   )}
                 </FormGroup>
                 <FormGroup>
@@ -156,10 +217,25 @@ class Portal extends Component {
               {showPreview ? "Edit Story" : "Show Preview"}
             </Button>
           )}
+          {readyToSubmit && showPreview && (
+            <Button color="success" onClick={() => this.saveStory()}>
+              Save Story
+            </Button>
+          )}
         </Container>
       </div>
     );
   }
 }
 
-export default Portal;
+export default withToastManager(
+  withRouter(
+    connect(
+      (state) => ({
+        auth: state.users.auth,
+      }),
+      (dispatch) =>
+        bindActionCreators({ authCheck, createStory, uploadImageV2 }, dispatch)
+    )(Portal)
+  )
+);

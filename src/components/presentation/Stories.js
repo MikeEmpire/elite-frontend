@@ -19,7 +19,11 @@ const Stories = (props) => {
         if (Array.isArray(users)) {
           const userId = stories[index].created_by;
           const userObj = users.find((u) => u.id === userId);
-          user = `${userObj.first_name} ${userObj.last_name}`;
+          if (userObj) {
+            user = `${userObj.first_name} ${userObj.last_name}`;
+          } else {
+            user = 'Loading'
+          }
         }
         return (
           <div key={stories[index].id}>

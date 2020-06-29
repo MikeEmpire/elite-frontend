@@ -1,4 +1,8 @@
-import { GET_USERS_SUCCESS, SIGN_IN_SUCCESS } from "../actions/users";
+import {
+  GET_USERS_SUCCESS,
+  SIGN_IN_SUCCESS,
+  AUTH_CHECK_SUCCESS,
+} from "../actions/users";
 
 const initialState = {
   users: [],
@@ -6,6 +10,11 @@ const initialState = {
 
 export default function users(state = initialState, action) {
   switch (action.type) {
+    case AUTH_CHECK_SUCCESS: {
+      return {
+        auth: action.payload.user,
+      };
+    }
     case GET_USERS_SUCCESS: {
       return {
         users: action.payload.users,
