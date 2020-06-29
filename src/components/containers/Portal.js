@@ -19,7 +19,6 @@ import Editor from "../presentation/Editor";
 import StoryPreview from "../presentation/StoryPreview";
 
 import { authCheck } from "../../actions/users";
-import { uploadImageV2 } from "../../actions/images";
 import { createStory } from "../../actions/stories";
 
 import STORY_CATEGORIES from "../../constants/STORY_CATEGORIES";
@@ -234,8 +233,7 @@ export default withToastManager(
       (state) => ({
         auth: state.users.auth,
       }),
-      (dispatch) =>
-        bindActionCreators({ authCheck, createStory, uploadImageV2 }, dispatch)
+      (dispatch) => bindActionCreators({ authCheck, createStory }, dispatch)
     )(Portal)
   )
 );

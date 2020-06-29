@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, Spinner } from "reactstrap";
 import { connect } from "react-redux";
 
 import { getStories } from "../../actions/stories";
@@ -8,6 +8,7 @@ import { bindActionCreators } from "redux";
 
 import Navbar from "./Navbar";
 import Stories from "../presentation/Stories";
+import FeaturedStory from "../presentation/FeaturedStory";
 
 class Main extends Component {
   componentDidMount() {
@@ -16,16 +17,25 @@ class Main extends Component {
   }
   render() {
     const { stories, users } = this.props;
+    const featuredStory = stories.length > 0 ? stories[0] : "loading";
     return (
       <div className="home--content">
         <Navbar />
         <Container className="main--section">
           <Row>
             <Col className="featured--section" md={8}>
-              <Stories stories={stories} users={users} />
+              <Row>
+                {typeof featuredStory === "object" ? (
+                  <FeaturedStory users={users} storyInfo={stories[0]} />
+                ) : (
+                  <Spinner type="grow" color="info" />
+                )}
+              </Row>
             </Col>
 
-            <Col className="side--section" md={4}>Side Content</Col>
+            <Col className="side--section" md={4}>
+              <Stories stories={stories} users={users} />
+            </Col>
           </Row>
         </Container>
       </div>
