@@ -1,0 +1,45 @@
+@import "../utilities/variables";
+
+.sign-in-page {
+  background-image: url("../../images/login-bg.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  height: 100vh;
+  min-height: 100%;
+  .container {
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    display: flex;
+  }
+  .sign-in-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    border-radius: 19px;
+    -webkit-box-shadow: 10px 10px 34px 3px rgba(0, 0, 0, 0.43);
+    -moz-box-shadow: 10px 10px 34px 3px rgba(0, 0, 0, 0.43);
+    box-shadow: 10px 10px 34px 3px rgba(0, 0, 0, 0.43);
+    width: 60vw;
+    height: 45vh;
+    padding: 100px 80px;
+    font-family: $font-2;
+    h2 {
+      font-size: 2.7rem;
+      margin-bottom: 3rem;
+    }
+    label {
+      font-weight: 600;
+    }
+    .form-control {
+      border: 0px solid;
+      -webkit-box-shadow: 10px 10px 34px -11px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: 10px 10px 34px -11px rgba(0, 0, 0, 0.3);
+      box-shadow: 10px 10px 34px -11px rgba(0, 0, 0, 0.3);
+      height: 60px;
+      border-radius: 14px;
+    }
+  }
+}
