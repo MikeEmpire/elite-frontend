@@ -1,10 +1,54 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import { withToastManager } from "react-toast-notifications";
 import { Container, Row, Col } from "reactstrap";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
 import Navbar from "./Navbar";
 import SignUpForm from "../presentation/SignUpForm";
 
-export default class SignIn extends Component {
+import { signIn } from "../../actions/users";
+
+class SignIn extends Component {
+  state = {
+    email: "",
+    password: "",
+    loading: false
+  };
+  handleSignIn = () => {
+    const { toastManager } = this.props;
+    const submitObject = {
+      email: this.state.email,
+      password: this.state.password,
+    };
+    this.setState({
+      loading: true,
+    });
+    return this.props.signIn(submitObject).then((res) => {
+      if (res.type === "SIGN_IN_SUCCESS") {
+        toastManager.add("Successfully logged in!", {
+          appearance: "success",
+          autoDismiss: true,
+        });
+        return this.props.history.push("/portal");
+      }
+      const { message } = res.payload.response.data;
+      toastManager.add(message, {
+        appearance: "error",
+        autoDismiss: true,
+      });
+      return this.setState({
+        loading: false,
+        showError: true,
+        errorMesage: message,
+      });
+    });
+  };
+  updateState = (key, value) =>
+    this.setState({
+      [key]: value,
+    });
   render() {
     return (
       <div className="sign-in-page">
@@ -14,7 +58,11 @@ export default class SignIn extends Component {
             <Col>
               <div className="sign-in-container">
                 <h2>Sign In</h2>
-                <SignUpForm />
+                <SignUpForm
+                  updateState={this.updateState}
+                  state={this.state}
+                  handleConfirm={this.handleSignIn}
+                />
               </div>
             </Col>
           </Row>
@@ -23,3 +71,11 @@ export default class SignIn extends Component {
     );
   }
 }
+
+export default withToastManager(
+  withRouter(
+    connect(null, (dispatch) => bindActionCreators({ signIn }, dispatch))(
+      SignIn
+    )
+  )
+);

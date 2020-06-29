@@ -26,3 +26,32 @@ export const getUsers = () => (dispatch) => {
       });
     });
 };
+
+export const SIGN_IN_REQUEST = "SIGN_IN_REQUEST";
+export const SIGN_IN_SUCCESS = "SIGN_IN_SUCCESS";
+export const SIGN_IN_FAILURE = "SIGN_IN_FAILURE";
+export const signIn = (submitObj) => (dispatch) => {
+  dispatch({ type: SIGN_IN_REQUEST });
+  nprogress.start();
+  return axios
+    .post(`${apiUrl}/api/users/signin`, submitObj)
+    .then((res) => {
+      localStorage.removeItem('token')
+      nprogress.done();
+      // set local storage token
+      const { token } = res.data
+      localStorage.setItem('token', token)
+      return dispatch({ type: SIGN_IN_SUCCESS, payload: res.data });
+      // redirect to /portal
+    })
+    .catch((err) => {
+      nprogress.done();
+      nprogress.remove();
+
+      return dispatch({
+        type: SIGN_IN_FAILURE,
+        payload: err,
+        error: true,
+      });
+    });
+};
