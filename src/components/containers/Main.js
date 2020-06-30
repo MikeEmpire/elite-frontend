@@ -7,7 +7,7 @@ import { getUsers } from "../../actions/users";
 import { bindActionCreators } from "redux";
 
 import Navbar from "./Navbar";
-import StoryList from './StoryList';
+import StoryList from "./StoryList";
 
 import Stories from "../presentation/Stories";
 import FeaturedStory from "../presentation/FeaturedStory";
