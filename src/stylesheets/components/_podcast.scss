@@ -3,8 +3,10 @@
 .podcast--section {
   display: flex;
   border-top: $border-style;
-  padding-top: 60px;
+  padding-top: 40px;
   font-family: $font-3;
+  padding-bottom: 30px;
+  border-bottom: 9px solid $gold;
 }
 
 .podcast--section--title {

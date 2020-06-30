@@ -7,6 +7,7 @@ import { getUsers } from "../../actions/users";
 import { bindActionCreators } from "redux";
 
 import Navbar from "./Navbar";
+import StoryList from './StoryList';
 
 import Stories from "../presentation/Stories";
 import FeaturedStory from "../presentation/FeaturedStory";
@@ -41,6 +42,9 @@ class Main extends Component {
           </Row>
           <Row>
             <Podcast />
+          </Row>
+          <Row>
+            <StoryList stories={stories} users={users} />
           </Row>
         </Container>
       </div>
