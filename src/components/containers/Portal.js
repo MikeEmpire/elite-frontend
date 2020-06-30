@@ -30,11 +30,11 @@ import checkToken from "../../helpers/checkToken";
 
 class Portal extends Component {
   state = {
-    content: "",
+    body: "",
     title: "",
     subtitle: "",
     category: "",
-    coverImageUrl: "",
+    image: "",
     showPreview: false,
     loading: false,
   };
@@ -54,13 +54,13 @@ class Portal extends Component {
     });
     const { id } = this.props.auth;
     const { toastManager } = this.props;
-    const { title, subtitle, content, coverImageUrl, category } = this.state;
+    const { title, subtitle, body, image, category } = this.state;
     const storyObj = {
       title,
       subtitle,
-      body: content,
+      body,
       category,
-      image: coverImageUrl,
+      image,
       created_by: id,
     };
     return this.props.createStory(storyObj).then((res) => {
@@ -84,7 +84,7 @@ class Portal extends Component {
     const fileName = file.name.split(".")[0];
     return s3.uploadFile(file, fileName).then((res) =>
       this.setState({
-        coverImageUrl: res.location,
+        image: res.location,
       })
     );
   };
@@ -97,31 +97,31 @@ class Portal extends Component {
     ));
 
     const {
-      content,
+      body,
       subtitle,
-      coverImageUrl,
+      image,
       title,
       category,
       showPreview,
     } = this.state;
 
     const readyToSubmit =
-      content &&
-      content.length > 10 &&
+      body &&
+      body.length > 10 &&
       title &&
       title.length > 10 &&
       category !== "" &&
       subtitle &&
       subtitle.length > 10 &&
-      coverImageUrl &&
-      coverImageUrl.length > 10;
+      image &&
+      image.length > 10;
 
     return (
       <div>
         <Navbar />
         <Container>
           {showPreview ? (
-            <StoryPreview storyInfo={this.state} />
+            <StoryPreview storyInfo={this.state} author={this.props.auth} />
           ) : (
             <Fragment>
               <h1>Create A Story Below</h1>
@@ -161,7 +161,7 @@ class Portal extends Component {
                   <Label for="exampleFile" style={{ display: "block" }}>
                     Cover Image
                   </Label>
-                  {this.state.coverImageUrl === "" ? (
+                  {this.state.image === "" ? (
                     <div>
                       <input
                         onChange={() => this.handleUpload()}
@@ -176,13 +176,13 @@ class Portal extends Component {
                       <img
                         alt="Placeholder for story"
                         style={{ display: "block", width: "50%" }}
-                        src={this.state.coverImageUrl}
+                        src={this.state.image}
                       />
                       <Badge
                         color="info"
                         onClick={() =>
                           this.setState({
-                            coverImageUrl: "",
+                            image: "",
                           })
                         }
                       >
@@ -205,7 +205,7 @@ class Portal extends Component {
                   </Input>
                 </FormGroup>
               </Form>
-              <Editor stateContent={content} handleChange={this.handleState} />
+              <Editor stateContent={body} handleChange={this.handleState} />
             </Fragment>
           )}
           {readyToSubmit && (

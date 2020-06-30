@@ -23,7 +23,7 @@ const Editor = (props) => {
         <Button
           disabled={isSaved}
           color="success"
-          onClick={() => handleChange("content", content)}
+          onClick={() => handleChange("body", content)}
         >
           {isSaved ? "Saved!" : "Save"}
         </Button>
@@ -39,7 +39,7 @@ const Editor = (props) => {
         <Button
           disabled={isSaved}
           color="success"
-          onClick={() => handleChange("content", content)}
+          onClick={() => handleChange("body", content)}
         >
           {isSaved ? "Saved!" : "Save"}
         </Button>
