@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,300;1,400&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Metrophobic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
 
 @font-face {
   font-family: "Hyogo";
@@ -16,11 +20,13 @@
   /* Legacy iOS */
 }
 
-$font-1: "Hyogo";
+$font-1: "Permanent Marker";
 
-$font-2: "Montserrat";
+$font-2: "Metrophobic";
 
-$font-3: "Bebas Neue";
+$font-3: "VT323";
 
 $gold: #dea30d;
 $faded-gold: rgba(222, 163, 13, 0.5);
+
+$silver: #888888

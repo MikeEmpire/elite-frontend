@@ -10,32 +10,43 @@
   justify-content: center;
   color: white;
   padding: 0 20%;
-  font-family: $font-1;
   h6 {
-    font-size: medium;
+    font-family: $font-2;
+    font-size: large;
     font-weight: 600;
     font-style: italic;
     line-height: 28px;
-    text-shadow: -2px 3px rgba(255, 255, 255, 0.3);
-    animation: text-shadow-glow 3s ease-in-out infinite;
+    // text-shadow: -2px 3px rgba(255, 255, 255, 0.3);
+    // animation: text-shadow-glow 3s ease-in-out infinite;
     color: white;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
+    color: white;
+    margin-bottom: 40px;
+  }
+  h5 {
+    font-family: $font-1;
+    font-size: 1.5em;
+    font-weight: 600;
+    line-height: 28px;
+    color: white;
   }
 }
 
 .site-title {
-  font-size: 5em;
+  font-family: $font-1;
+  font-size: 8em;
   letter-spacing: 1.6px;
-  text-shadow: -4px 3px rgba(222, 163, 13, 0.5);
+  text-shadow: -4px 3px #e5e5e5;
   font-weight: 400;
   animation: float 6s ease-in-out infinite;
 }
 
 #foreign-text {
-  color: $gold;
+  color: $silver;
   font-size: 2.7em;
   letter-spacing: 5px;
   margin-top: 24px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   font-weight: 500;
 }
+

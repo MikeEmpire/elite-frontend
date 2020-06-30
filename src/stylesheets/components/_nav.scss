@@ -17,14 +17,17 @@ a.nav--link.nav-link {
   font-weight: bold;
 
   &:hover {
-    color: $gold !important;
+    color: $silver !important;
   }
 }
 
 a.nav--link.navbar-brand {
-  color: $gold;
+  color: $silver;
   font-family: $font-1;
   font-size: 3em;
+  &:hover {
+    color: white !important;
+  }
 }
 
 a.dropdown-toggle.nav-link {
@@ -32,11 +35,11 @@ a.dropdown-toggle.nav-link {
 }
 
 a.dropdown-toggle.nav-link {
-  font-family: Hyogo;
-  color: $gold !important;
-  margin-top: 6px;
+  font-family: $font-1;
+  color: $silver !important;
+  margin-top: 12px;
 }
 
 .navbar-toggler {
-  background-color: $gold !important;
+  background-color: $silver !important;
 }
