@@ -1,6 +1,6 @@
 import React from "react";
 import { useTrail, animated } from "react-spring";
-import { Col } from 'reactstrap';
+import { Col } from "reactstrap";
 
 const config = { mass: 5, tension: 1000, friction: 200 };
 
@@ -9,7 +9,7 @@ const Stories = (props) => {
   const trail = useTrail(stories.length, {
     config,
     opacity: 1,
-    height: 'auto',
+    height: "auto",
     x: 20,
     from: { opacity: 0, x: 20, height: 0 },
   });
@@ -34,7 +34,14 @@ const Stories = (props) => {
               transform: x.interpolate((x) => `translate3d(0.${x}px,0)`),
             }}
           >
-            <animated.div className="story" style={{ height }}>
+            <animated.div
+              className="story"
+              style={{
+                height,
+                borderBottom:
+                  index === 0 ? "7px solid rgba(251, 233, 188, 0.5)" : null,
+              }}
+            >
               <img
                 alt="Featured article for elite"
                 className="story--image"

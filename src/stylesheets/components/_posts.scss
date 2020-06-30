@@ -35,6 +35,7 @@
   font-weight: bold;
   font-size: x-large;
   letter-spacing: 1.1px;
+  color: black;
 }
 
 .story--author {
@@ -61,13 +62,13 @@
   .story--title {
     font-size: xx-large;
     letter-spacing: 2px;
+    color: black;
   }
 }
 
 .story {
   position: relative;
   justify-content: space-between;
-  border-bottom: 7px solid lighten($faded-gold, 40%);
   padding-bottom: 10px;
   margin-top: 20px;
   cursor: pointer;

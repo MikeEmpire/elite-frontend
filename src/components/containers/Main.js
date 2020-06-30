@@ -7,8 +7,10 @@ import { getUsers } from "../../actions/users";
 import { bindActionCreators } from "redux";
 
 import Navbar from "./Navbar";
+
 import Stories from "../presentation/Stories";
 import FeaturedStory from "../presentation/FeaturedStory";
+import Podcast from "../presentation/Podcast";
 
 class Main extends Component {
   componentDidMount() {
@@ -36,6 +38,9 @@ class Main extends Component {
             <Col className="side--section" md={4}>
               <Stories stories={stories} users={users} />
             </Col>
+          </Row>
+          <Row>
+            <Podcast />
           </Row>
         </Container>
       </div>

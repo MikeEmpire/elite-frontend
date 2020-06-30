@@ -155,7 +155,7 @@ class Portal extends Component {
                   />
                 </FormGroup>
                 <FormGroup>
-                  {this.state.url !== "" && <img src={this.state.url} />}
+                  {this.state.url !== "" && <img alt="cover for draft article" src={this.state.url} />}
                 </FormGroup>
                 <FormGroup>
                   <Label for="exampleFile" style={{ display: "block" }}>

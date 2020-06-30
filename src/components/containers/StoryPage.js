@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Container, Row, Col, Spinner } from "reactstrap";
+import { Container, Spinner } from "reactstrap";
 
 import Story from "../presentation/Story";
 import Navbar from "./Navbar";
