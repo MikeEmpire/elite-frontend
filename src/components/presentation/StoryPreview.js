@@ -1,10 +1,10 @@
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
-import parse from "html-react-parser";
+
+import Story from "./Story";
 
 const StoryPreview = (props) => {
-  const { storyInfo } = props;
-  const { content, title, category, coverImageUrl } = storyInfo;
+  const { storyInfo, author } = props;
 
   return (
     <Container>
@@ -14,16 +14,7 @@ const StoryPreview = (props) => {
         </Col>
       </Row>
       <Row>
-        <Col>
-          <img
-            alt="Featured article for elite"
-            className="story--image"
-            src={coverImageUrl}
-          />
-          <h6 className="story--category">{category}</h6>
-          <h1 className="story--title">{title}</h1>
-          <div className="content--container">{parse(content)}</div>
-        </Col>
+        <Story storyInfo={storyInfo} author={author} />
       </Row>
     </Container>
   );

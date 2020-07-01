@@ -2,9 +2,11 @@ import React from "react";
 import { useTrail, animated } from "react-spring";
 import { Col } from "reactstrap";
 
+import StoryThumbnail from "../presentation/StoryThumbnail";
+
 const config = { mass: 5, tension: 1000, friction: 200 };
 
-const Stories = (props) => {
+const StoryList = (props) => {
   const { stories, users } = props;
   const trail = useTrail(stories.length, {
     config,
@@ -13,6 +15,7 @@ const Stories = (props) => {
     x: 20,
     from: { opacity: 0, x: 20, height: 0 },
   });
+  //   const name = `${author.first_name} ${author.last_name}`;
   return trail.map(({ x, height, ...rest }, index) => {
     let user = "";
     if (Array.isArray(users)) {
@@ -25,7 +28,7 @@ const Stories = (props) => {
       }
     }
     return (
-      <Col key={stories[index].id}>
+      <Col key={stories[index].id} md={12}>
         {stories.length > 0 ? (
           <animated.div
             key={stories[index]}
@@ -35,24 +38,12 @@ const Stories = (props) => {
             }}
           >
             <animated.div
-              className="story"
+              className="story story--thumbnail"
               style={{
                 height,
-                borderBottom:
-                  index === 0 ? "7px solid rgba(251, 233, 188, 0.5)" : null,
               }}
             >
-              <img
-                alt="Featured article for elite"
-                className="story--image"
-                src={stories[index].image}
-              />
-              <h6 className="story--category">
-                {stories[index].category}
-              </h6>
-              <h1 className="story--title">{stories[index].title}</h1>
-              {/* <p className="story--subtitle">{stories[index].subtitle}</p> */}
-              <p className="story--author">By {user}</p>
+              <StoryThumbnail story={stories[index]} author={user} />
             </animated.div>
           </animated.div>
         ) : (
@@ -63,4 +54,4 @@ const Stories = (props) => {
   });
 };
 
-export default Stories;
+export default StoryList;

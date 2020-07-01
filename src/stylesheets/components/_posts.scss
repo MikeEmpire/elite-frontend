@@ -1,5 +1,14 @@
 @import "../utilities/variables";
 
+.story--page--image {
+  float: left;
+  width: 60vw;
+  height: 50vh;
+  object-fit: cover;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .story--image {
   width: 100%;
 }
@@ -25,6 +34,7 @@
   font-weight: bold;
   font-size: x-large;
   letter-spacing: 1.1px;
+  color: black;
 }
 
 .story--author {
@@ -38,20 +48,26 @@
 
 .content--container {
   font-family: $font-3;
+  padding-left: 10%;
+  padding-right: 10%;
   p {
     letter-spacing: 0.2px;
-    line-height: 28.3px;
+    line-height: 30px;
     font-weight: 500;
     font-size: large;
     color: $silver;
     font-family: $font-2;
+  }
+  .story--title {
+    font-size: xx-large;
+    letter-spacing: 2px;
+    color: black;
   }
 }
 
 .story {
   position: relative;
   justify-content: space-between;
-  border-bottom: 7px solid black;
   padding-bottom: 10px;
   margin-top: 20px;
   cursor: pointer;
@@ -59,6 +75,10 @@
     color: $silver;
     font-size: xx-large;
   }
+}
+
+.story.featured {
+  border-bottom: 0px;
 }
 
 .main--section.container {
@@ -73,9 +93,63 @@
 
 .story--image.featured {
   max-height: 60vh;
+  height: 60vh;
   max-width: 100%;
+  width: auto;
 }
 
 .featured--section.col-md-8 {
   height: 80vh;
+}
+
+.story--view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.story--meta--container {
+  height: 7vh;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 29px;
+  font-family: $font-2;
+  color: grey;
+  font-weight: 600;
+}
+
+.story.story--thumbnail {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-bottom: $border-style;
+  padding-bottom: 20px;
+}
+
+.story--image--container {
+  .story--image {
+    max-height: 20vh;
+    max-width: 20vh;
+  }
+}
+.story--thumbnail--info--container {
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: center;
+  margin-left: 50px;
+  margin-top: 20px;;
+}
+
+.story--category--thumbnail {
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.story--title--thumbnail {
+  font-size: 1.7rem;
+  letter-spacing: 1.7px;
+  margin-bottom: 20px;
 }

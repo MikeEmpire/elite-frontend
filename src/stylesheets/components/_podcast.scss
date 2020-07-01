@@ -1,0 +1,52 @@
+@import "../utilities/variables";
+
+.podcast--section {
+  display: flex;
+  border-top: $border-style;
+  padding-top: 40px;
+  font-family: $font-3;
+  padding-bottom: 30px;
+  border-bottom: 9px solid $gold;
+}
+
+.podcast--section--title {
+  font-family: $font-3;
+  font-size: x-large;
+  margin-left: 10%;
+  margin-bottom: 10%;
+}
+
+.podcast--text--section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 5%;
+  margin-top: 4%;
+  justify-content: space-between;
+  .dropdown--container {
+    .dropdown-toggle {
+      font-size: large;
+      letter-spacing: 1.2px;
+      background-color: $gold;
+      border: 1px solid $gold;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 10px;
+      padding-bottom: 0px;
+    }
+  }
+  .podcast--episode {
+    font-size: xxx-large;
+    font-weight: bold;
+    letter-spacing: 1.2px;
+  }
+  .podcast--hashtag {
+    @extend .podcast--episode;
+    font-size: xx-large;
+  }
+  p {
+    font-size: x-large;
+    font-family: $font-2;
+    font-weight: unset;
+  }
+}

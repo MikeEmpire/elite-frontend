@@ -29,4 +29,5 @@ $font-3: "VT323";
 $gold: #dea30d;
 $faded-gold: rgba(222, 163, 13, 0.5);
 
-$silver: #888888
+$silver: #888888;
+$border-style: 7px solid lighten($faded-gold, 40%);
