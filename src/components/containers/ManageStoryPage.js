@@ -6,9 +6,18 @@ class ManageStoryPage extends Component {
   state = {};
 
   render() {
+    const { stories } = this.props;
+    const storyContent = stories.map((story) => (
+      <div key={story.id} className="story">
+        <img />
+        <h6 className="story--category">{story.category}</h6>
+        <h1>{story.title}</h1>
+        <p></p>
+      </div>
+    ));
     return (
       <div>
-        <div>Stories Go Here</div>
+        {storyContent}
         <div>edit panel goes here</div>
       </div>
     );

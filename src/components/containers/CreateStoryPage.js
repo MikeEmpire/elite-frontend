@@ -8,8 +8,6 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { withToastManager } from "react-toast-notifications";
 
-import Navbar from "./Navbar";
-
 import ManageStory from '../presentation/ManageStory';
 
 import { authCheck } from "../../actions/users";
@@ -72,7 +70,6 @@ class CreateStoryPage extends Component {
   };
 
   handleUpload = e => {
-
     const file = e.target.files[0];
     // Split the filename to get the name and type
     const fileName = file.name.split(".")[0];
@@ -106,8 +103,8 @@ class CreateStoryPage extends Component {
 
     return (
       <div>
-        <Navbar />
         <Container>
+          <h1>Create A Story Below</h1>
           <ManageStory extra={extraProps} state={this.state} auth={this.props.auth} />
           {readyToSubmit && (
             <Button

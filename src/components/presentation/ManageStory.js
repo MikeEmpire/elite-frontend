@@ -14,7 +14,6 @@ const ManageStory = (props) => {
     <StoryPreview storyInfo={state} author={auth} />
   ) : (
     <Fragment>
-      <h1>Create A Story Below</h1>
       {readyToSubmit && (
         <Button
           color="primary"
