@@ -15,7 +15,7 @@ import checkToken from "../../helpers/checkToken";
 
 class Portal extends Component {
   state = {
-    manage: false,
+    manage: true,
   };
   componentDidMount() {
     checkToken(this.props);
@@ -25,7 +25,7 @@ class Portal extends Component {
   render() {
     const { stories, users } = this.props;
     const content = !this.state.manage ? (
-      <CreateStoryPage />
+      <CreateStoryPage users={users} />
     ) : (
       <ManageStoryPage stories={stories} users={users} />
     );
@@ -54,7 +54,11 @@ class Portal extends Component {
 export default withToastManager(
   withRouter(
     connect(
-      (state) => ({ auth: state.users.auth, stories: state.stories.stories }),
+      (state) => ({
+        auth: state.users.auth,
+        stories: state.stories.stories,
+        users: state.users.users,
+      }),
       (dispatch) =>
         bindActionCreators({ authCheck, getUsers, getStories }, dispatch)
     )(Portal)

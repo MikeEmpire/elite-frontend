@@ -1,7 +1,6 @@
 import {
   GET_USERS_SUCCESS,
-  SIGN_IN_SUCCESS,
-  AUTH_CHECK_SUCCESS,
+  SIGN_IN_SUCCESS
 } from "../actions/users";
 
 const initialState = {
@@ -10,11 +9,6 @@ const initialState = {
 
 export default function users(state = initialState, action) {
   switch (action.type) {
-    case AUTH_CHECK_SUCCESS: {
-      return {
-        auth: action.payload.user,
-      };
-    }
     case GET_USERS_SUCCESS: {
       return {
         users: action.payload.users,
@@ -26,7 +20,6 @@ export default function users(state = initialState, action) {
         auth: action.payload.user,
       };
     }
-
     default:
       return state;
   }

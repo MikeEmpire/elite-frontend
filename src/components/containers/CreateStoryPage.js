@@ -129,7 +129,7 @@ export default withToastManager(
   withRouter(
     connect(
       (state) => ({
-        auth: state.users.auth,
+        auth: state.auth.auth,
       }),
       (dispatch) => bindActionCreators({ authCheck, createStory }, dispatch)
     )(CreateStoryPage)

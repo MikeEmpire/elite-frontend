@@ -1,54 +1,34 @@
-import axios from "axios";
-import nprogress from "nprogress";
+import actionAxios from "../helpers/actionAxios";
 
-import apiUrl from "../constants/apiUrl";
-
-export const GET_STORIES_REQUEST = "GET_STORIES_REQUEST";
-export const GET_STORIES_SUCCESS = "GET_STORIES_SUCCESS";
-export const GET_STORIES_FAILURE = "GET_STORIES_FAILURE";
-export const getStories = () => (dispatch) => {
-  dispatch({ type: GET_STORIES_REQUEST });
-  nprogress.start();
-  return axios
-    .get(`${apiUrl}/api/stories`)
-    .then((res) => {
-      nprogress.done();
-      return dispatch({ type: GET_STORIES_SUCCESS, payload: res.data });
-    })
-    .catch((err) => {
-      nprogress.done();
-      nprogress.remove();
-
-      return dispatch({
-        type: GET_STORIES_FAILURE,
-        payload: err,
-        error: true,
-      });
-    });
+const getStoriesParams = {
+  body: [],
+  url: "/api/stories",
+  actionType: `GET_STORIES`,
+  method: "get",
 };
 
-export const CREATE_STORY_REQUEST = "CREATE_STORY_REQUEST";
-export const CREATE_STORY_SUCCESS = "CREATE_STORY_SUCCESS";
-export const CREATE_STORY_FAILURE = "CREATE_STORY_FAILURE";
-export const createStory = (story) => (dispatch) => {
-  dispatch({ type: CREATE_STORY_REQUEST });
-  nprogress.start();
-  return axios
-    .post(`${apiUrl}/api/stories`, {
-      ...story,
-    })
-    .then((res) => {
-      nprogress.done();
-      return dispatch({ type: CREATE_STORY_SUCCESS, payload: res.data });
-    })
-    .catch((err) => {
-      nprogress.done();
-      nprogress.remove();
+export const GET_STORIES_SUCCESS = "GET_STORIES_SUCCESS";
+export const getStories = () => (dispatch) =>
+  actionAxios(getStoriesParams, dispatch);
 
-      return dispatch({
-        type: CREATE_STORY_FAILURE,
-        payload: err,
-        error: true,
-      });
-    });
+export const CREATE_STORY_SUCCESS = "CREATE_STORY_SUCCESS";
+export const createStory = (story) => (dispatch) => {
+  const createStoryParams = {
+    body: story,
+    url: "/api/stories",
+    actionType: "CREATE_STORY",
+    method: "post",
+  };
+  return actionAxios(createStoryParams, dispatch);
+};
+
+export const EDIT_STORY_SUCCESS = "EDIT_STORY_SUCCESS";
+export const manageStory = (story) => (dispatch) => {
+  const editStoryParams = {
+    body: story,
+    url: "/api/stories",
+    actionType: "EDIT_STORY",
+    method: "put",
+  };
+  return actionAxios(editStoryParams, dispatch);
 };
