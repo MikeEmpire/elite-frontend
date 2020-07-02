@@ -1,15 +1,22 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import { withRouter } from "react-router-dom";
 import { Container, Spinner } from "reactstrap";
-
-import Story from "../presentation/Story";
-import Navbar from "./Navbar";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+
 import { getStories } from "../../actions/stories";
 import { getUsers } from "../../actions/users";
 
+import Navbar from "./Navbar";
+
+import Story from "../presentation/Story";
+import ReadingProgress from "../presentation/ReadingProgress";
+
 class StoryPage extends Component {
+  constructor(props) {
+    super(props);
+    this.story = createRef();
+  }
   componentDidMount() {
     this.props.getStories();
     this.props.getUsers();
@@ -34,10 +41,13 @@ class StoryPage extends Component {
       };
     }
     return (
-      <div>
+      <>
         <Navbar />
-        <Container>{story()}</Container>
-      </div>
+        <ReadingProgress target={this.story} />
+        <div ref={this.story}>
+          <Container>{story()}</Container>
+        </div>
+      </>
     );
   }
 }

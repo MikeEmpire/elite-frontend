@@ -154,3 +154,10 @@
   letter-spacing: 1.7px;
   margin-bottom: 20px;
 }
+.reading-progress-bar {
+  position: sticky;
+  height: 7px;
+  top: 0;
+  z-index: 1000;
+  background-color: $faded-gold;
+}
