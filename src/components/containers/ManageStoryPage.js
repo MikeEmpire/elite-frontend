@@ -2,30 +2,38 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Badge, Button, Input, Label, FormGroup } from "reactstrap";
+import { withToastManager } from "react-toast-notifications";
 
-import { getUsers } from "../../actions/users";
+import { editStory, getStories } from "../../actions/stories";
 
 import StoryThumbnail from "../presentation/StoryThumbnail";
 import ManageStory from "../presentation/ManageStory";
 
 import s3 from "../../utils/s3";
+import { TOAST_SUCCESS, TOAST_ERROR } from "../../constants/TOAST_CONFIG";
+
+const originalState = {
+  query: "",
+  body: "",
+  title: "",
+  subtitle: "",
+  category: "",
+  image: "",
+  showPreview: false,
+  loading: false,
+  selectedStory: {},
+  selectedUser: {},
+};
 class ManageStoryPage extends Component {
-  state = {
-    query: "",
-    body: "",
-    title: "",
-    subtitle: "",
-    category: "",
-    image: "",
-    showPreview: false,
-    loading: false,
-    selectedStory: {},
-    selectedUser: {},
-  };
+  state = originalState;
 
   handleState = (state, value) => this.setState({ [state]: value });
 
-  editStory = () => {
+  saveEditedStory = () => {
+    this.setState({
+      loading: true,
+    });
+    const { toastManager } = this.props;
     const { title, subtitle, body, image, category } = this.state;
 
     const storyObj = {
@@ -34,8 +42,23 @@ class ManageStoryPage extends Component {
       body,
       category,
       image,
+      id: this.state.selectedStory.id,
     };
-    return null;
+
+    return this.props.editStory(storyObj).then((res) => {
+      this.setState({
+        loading: false,
+      });
+      if (res.type === "EDIT_STORY_SUCCESS") {
+        toastManager.add("Successfully edited the story!", TOAST_SUCCESS);
+        this.props.getStories();
+        return this.setState(originalState);
+      }
+      return toastManager.add(
+        "There was an error editing your story. Hit up Mike to get it fixed",
+        TOAST_ERROR
+      );
+    });
   };
 
   handleUpload = (e) => {
@@ -165,15 +188,22 @@ class ManageStoryPage extends Component {
             {showPreview ? "Edit Story" : "Show Preview"}
           </Button>
         )}
+        {readyToSubmit && showPreview && (
+          <Button color="success" onClick={() => this.saveEditedStory()}>
+            Save Edited Story
+          </Button>
+        )}
       </div>
     );
   }
 }
 
-export default connect(
-  (state) => ({
-    auth: state.auth.auth,
-    users: state.users.users,
-  }),
-  (dispatch) => bindActionCreators({ getUsers }, dispatch)
-)(ManageStoryPage);
+export default withToastManager(
+  connect(
+    (state) => ({
+      auth: state.auth.auth,
+      users: state.users.users,
+    }),
+    (dispatch) => bindActionCreators({ editStory, getStories }, dispatch)
+  )(ManageStoryPage)
+);

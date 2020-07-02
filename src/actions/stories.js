@@ -23,10 +23,10 @@ export const createStory = (story) => (dispatch) => {
 };
 
 export const EDIT_STORY_SUCCESS = "EDIT_STORY_SUCCESS";
-export const manageStory = (story) => (dispatch) => {
+export const editStory = (story) => (dispatch) => {
   const editStoryParams = {
     body: story,
-    url: "/api/stories",
+    url: `/api/stories/${story.id}`,
     actionType: "EDIT_STORY",
     method: "put",
   };
