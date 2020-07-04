@@ -1,14 +1,11 @@
 import React, { Component, createRef } from "react";
-import {
-  Button,
-  Container,
-} from "reactstrap";
+import { Button, Container } from "reactstrap";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { withToastManager } from "react-toast-notifications";
 
-import ManageStory from '../presentation/ManageStory';
+import ManageStory from "../presentation/ManageStory";
 
 import { authCheck } from "../../actions/users";
 import { createStory } from "../../actions/stories";
@@ -63,13 +60,13 @@ class CreateStoryPage extends Component {
         return this.props.history.push("/main");
       }
       return toastManager.add(
-        "There was an error creating the story, please go over the info again or hit Mike up",
+        "There was an error creating the story, please go over the info and try again or hit Mike up",
         TOAST_ERROR
       );
     });
   };
 
-  handleUpload = e => {
+  handleUpload = (e) => {
     const file = e.target.files[0];
     // Split the filename to get the name and type
     const fileName = file.name.split(".")[0];
@@ -81,7 +78,6 @@ class CreateStoryPage extends Component {
   };
 
   render() {
-
     const { body, subtitle, image, title, category, showPreview } = this.state;
 
     const readyToSubmit =
@@ -105,7 +101,11 @@ class CreateStoryPage extends Component {
       <div>
         <Container>
           <h1>Create A Story Below</h1>
-          <ManageStory extra={extraProps} state={this.state} auth={this.props.auth} />
+          <ManageStory
+            extra={extraProps}
+            state={this.state}
+            auth={this.props.auth}
+          />
           {readyToSubmit && (
             <Button
               color="primary"

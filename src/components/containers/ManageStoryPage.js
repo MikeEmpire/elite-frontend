@@ -9,8 +9,11 @@ import { editStory, getStories } from "../../actions/stories";
 import StoryThumbnail from "../presentation/StoryThumbnail";
 import ManageStory from "../presentation/ManageStory";
 
+import SetFeaturedModalContent from "../modals/SetFeaturedModalContent";
+
 import s3 from "../../utils/s3";
 import { TOAST_SUCCESS, TOAST_ERROR } from "../../constants/TOAST_CONFIG";
+import getUserForStory from "../../helpers/getUserForStory";
 
 const originalState = {
   query: "",
@@ -106,17 +109,22 @@ class ManageStoryPage extends Component {
         s.title.toLowerCase().includes(query.toLowerCase())
       );
     }
+
+    const modalProps = {
+      reduxArr: {
+        stories,
+        users,
+      },
+      func: {
+        getStories: this.props.getStories,
+        editStory: this.props.editStory,
+      },
+    };
     const storyContent =
       Object.keys(this.state.selectedStory).length === 0 ? (
         filteredStories.map((story) => {
-          let user = "";
-          if (Array.isArray(users)) {
-            user = users.find((user) => user.id === story.created_by);
-            if (typeof user === "object") {
-              user = `${user.first_name} ${user.last_name}`;
-            }
-          }
-          const { title, subtitle, body, category, image } = story;
+          const user = getUserForStory(users, story);
+          const { title, subtitle, body, category, image, is_featured } = story;
           return (
             <div
               className="story story--thumbnail"
@@ -129,12 +137,14 @@ class ManageStoryPage extends Component {
                   body,
                   category,
                   image,
+                  is_featured,
                   selectedStory: story,
                   selectedUser: user,
                 })
               }
             >
               <StoryThumbnail story={story} author={user} />
+              {is_featured && <Badge>Featured Story</Badge>}
             </div>
           );
         })
@@ -165,6 +175,11 @@ class ManageStoryPage extends Component {
       );
     return (
       <div className="manage--story--page">
+        {/* <Badge>Set Featured Story</Badge> */}
+        <SetFeaturedModalContent
+          modalProps={modalProps}
+          currentlyFeaturedStory={stories.find((a) => a.is_featured)}
+        />
         <FormGroup>
           <Label>Search Stories</Label>
           <Input

@@ -20,7 +20,13 @@ class Main extends Component {
   }
   render() {
     const { stories, users } = this.props;
-    const featuredStory = stories.length > 0 ? stories[0] : "loading";
+    const featuredStory =
+      stories.length > 0 && Array.isArray(stories)
+        ? stories.find((st) => st.is_featured)
+        : "loading";
+    const subFeaturedStories = stories
+      .sort((a, b) => a.date_created < b.date_created)
+      .slice(0, 2);
     return (
       <div className="home--content">
         <Navbar />
@@ -29,7 +35,7 @@ class Main extends Component {
             <Col className="featured--section" md={8}>
               <Row>
                 {typeof featuredStory === "object" ? (
-                  <FeaturedStory users={users} storyInfo={stories[0]} />
+                  <FeaturedStory users={users} storyInfo={featuredStory} />
                 ) : (
                   <Spinner type="grow" color="info" />
                 )}
@@ -37,14 +43,17 @@ class Main extends Component {
             </Col>
 
             <Col className="side--section" md={4}>
-              <Stories stories={stories} users={users} />
+              <Stories stories={subFeaturedStories} users={users} />
             </Col>
           </Row>
           <Row>
             <Podcast />
           </Row>
           <Row>
-            <StoryList stories={stories} users={users} />
+            <StoryList
+              stories={stories.filter((s) => !s.is_featured)}
+              users={users}
+            />
           </Row>
         </Container>
       </div>
