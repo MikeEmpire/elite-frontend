@@ -8,6 +8,7 @@ nav.elite--nav {
 }
 
 a.nav--link.navbar-brand {
+  margin-right: 75px;
   color: $gold;
   font-family: $font-1;
   font-size: 3.20em;
@@ -25,6 +26,7 @@ a.nav--link.nav-link {
   transition: all .3s;
   cursor: pointer;
   font-weight: bold;
+  margin-left: 5px;
 
   &:hover {
     color: $gold !important;
@@ -38,7 +40,8 @@ a.dropdown-toggle.nav-link {
 a.dropdown-toggle.nav-link {
   font-family: Hyogo;
   color: $gold !important;
-  margin-top: 6px;
+  margin-top: 12px;
+  margin-left: 200px;
 
   &:hover {
     color: white !important;
