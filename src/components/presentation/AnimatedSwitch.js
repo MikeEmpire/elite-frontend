@@ -6,6 +6,7 @@ import Splash from "./Splash";
 import Main from "../containers/Main";
 import SignIn from "../containers/SignIn";
 import StoryPage from "../containers/StoryPage";
+import SportsPage from "../containers/SportsPage";
 import Portal from "../containers/Portal";
 
 const AnimatedSwitch = withRouter(({ location }) => (
@@ -17,6 +18,7 @@ const AnimatedSwitch = withRouter(({ location }) => (
         <Route path="/portal" children={<Portal />} />
         <Route path="/signin" children={<SignIn />} />
         <Route path="/main/:id" children={<StoryPage />} />
+        <Route path="/sports" children={<SportsPage />} />
       </Switch>
     </CSSTransition>
   </TransitionGroup>

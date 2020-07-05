@@ -27,7 +27,7 @@ class SetFeaturedModal extends Component {
   setAsFeatured = () => {
     const { toastManager, modalProps, currentlyFeaturedStory } = this.props;
     const { func } = modalProps;
-    const { editStory, getStories } = func;
+    const { editStory } = func;
     const { selectedStory } = this.state;
 
     // get current featured story
@@ -110,7 +110,6 @@ class SetFeaturedModal extends Component {
           </div>
         );
       });
-    console.log(filteredStories)
     return (
       <>
         <Button color="info" onClick={() => this.toggle()}>

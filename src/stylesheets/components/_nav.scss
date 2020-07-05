@@ -21,10 +21,22 @@ a.nav--link.nav-link {
   }
 }
 
+a.link {
+  color: white;
+  transition: all .3s;
+  &:hover {
+    color: $gold !important;
+  }
+}
+
+a.link.brand {
+  color: $gold;
+  font-size: xxx-large;
+}
+
 a.nav--link.navbar-brand {
   color: $gold;
   font-family: $font-1;
-  font-size: 3em;
 }
 
 a.dropdown-toggle.nav-link {

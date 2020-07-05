@@ -1,6 +1,5 @@
 import React from "react";
 import { Col } from "reactstrap";
-
 import parse from "html-react-parser";
 
 const Story = (props) => {
