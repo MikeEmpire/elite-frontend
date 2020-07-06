@@ -51,7 +51,7 @@ const Navigation = () => {
               Follow Elite
             </DropdownToggle>
             <DropdownMenu right>
-              <DropdownItem>Twitter</DropdownItem>
+              <DropdownItem><a href="https://twitter.com/TheEliteMedia_" target="_blank">Twitter</a></DropdownItem>
               <DropdownItem>Instagram</DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>

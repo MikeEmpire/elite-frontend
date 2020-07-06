@@ -29,8 +29,8 @@ const Podcast = () => {
           <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
             <DropdownToggle caret color="warning">Tap In</DropdownToggle>
             <DropdownMenu>
-              <DropdownItem>Spotify</DropdownItem>
-              <DropdownItem>Apple Music</DropdownItem>
+              <DropdownItem><a href="https://open.spotify.com/show/2IJ0Qs6foGsb5IRS7JAJIr?si=KrhrnlyWRBSaIdgi6vTEyw" target="_blank">Spotify</a></DropdownItem>
+              <DropdownItem><a href="https://podcasts.apple.com/us/podcast/elite/id1507723272" target="_blank">Apple Music</a></DropdownItem>
             </DropdownMenu>
           </ButtonDropdown>
         </div>
