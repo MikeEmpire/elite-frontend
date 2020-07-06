@@ -28,7 +28,7 @@ const Navigation = () => {
       </NavbarBrand>
       <NavbarToggler className="toggler" onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
-        <Nav className="mr-auto" navbar>
+        <Nav className="cat mr-auto" navbar>
           <NavItem>
             <NavLink className="nav--link">Music</NavLink>
           </NavItem>

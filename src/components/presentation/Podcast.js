@@ -34,7 +34,7 @@ const Podcast = () => {
             </DropdownMenu>
           </ButtonDropdown>
         </div>
-        <p>Subscribe or view our latest episode on the elite podcast</p>
+        <p>Subscribe or view our latest episode of the Elite podcast.</p>
       </div>
     </Col>
   );
