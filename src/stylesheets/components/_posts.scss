@@ -52,12 +52,14 @@
   padding-left: 10%;
   padding-right: 10%;
   p {
+    overflow-x: scroll;
     letter-spacing: 0.2px;
-    line-height: 30px;
+    line-height: 30.6px;
     font-weight: 500;
-    font-size: large;
-    color: darkslategrey;
+    font-size: 18px;
+    color: black;
     font-family: $font-2;
+    font-stretch: 100%;
     img {
       width: 100% !important;
     }
@@ -143,8 +145,7 @@
 
 .story--image--container {
   .story--image {
-    max-height: 20vh;
-    max-width: 20vh;
+    max-width: 300px;
   }
 }
 .story--thumbnail--info--container {
@@ -163,7 +164,7 @@
 }
 
 .story--title--thumbnail {
-  font-size: 2rem;
+  font-size: 1.4rem;
   letter-spacing: 1.7px;
   margin-bottom: 20px;
 }
@@ -173,4 +174,7 @@
   top: 0;
   z-index: 1000;
   background-color: $faded-gold;
+}
+@media screen and (max-width: 768px) {
+
 }
