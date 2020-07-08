@@ -3,7 +3,7 @@
 .story--page--image {
   float: left;
   width: 100%;
-  height: 50vh;
+  max-height: 80vh;
   object-fit: cover;
   margin-left: auto;
   margin-right: auto;
@@ -174,4 +174,13 @@
   top: 0;
   z-index: 1000;
   background-color: $faded-gold;
+}
+
+.author--info {
+      font-family: $font-3;
+    font-size: 18px;
+    letter-spacing: 1.2px;
+    color: grey;
+    font-weight: 400;
+    line-height: 23px;
 }

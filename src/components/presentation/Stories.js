@@ -1,5 +1,6 @@
 import React from "react";
 import { useTrail, animated } from "react-spring";
+import { Link } from 'react-router-dom'
 import { Col } from "reactstrap";
 
 const config = { mass: 5, tension: 1000, friction: 200 };
@@ -50,7 +51,7 @@ const Stories = (props) => {
               <h6 className="story--category">
                 {stories[index].category}
               </h6>
-              <h1 className="story--title">{stories[index].title}</h1>
+              <Link to={`/main/${stories[index].id}`}><h1 className="story--title">{stories[index].title}</h1></Link>
               {/* <p className="story--subtitle">{stories[index].subtitle}</p> */}
               <p className="story--author">By {user}</p>
             </animated.div>
