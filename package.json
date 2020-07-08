@@ -12,6 +12,7 @@
     "html-react-parser": "^0.13.0",
     "immutability-helper": "^3.1.1",
     "jodit-react": "^1.0.42",
+    "node": "14.5.0",
     "notistack": "^0.3.4",
     "react": "^16.13.1",
     "react-aws-s3": "^1.3.0",
@@ -33,7 +34,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "v": "node -v"
   },
   "eslintConfig": {
     "extends": "react-app"
