@@ -28,7 +28,7 @@ const Navigation = () => {
       </NavbarBrand>
       <NavbarToggler className="toggler" onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
-        <Nav className="cat mr-auto" navbar>
+        <Nav className="mr-auto" navbar>
           <NavItem>
             <NavLink className="nav--link">Music</NavLink>
           </NavItem>
@@ -51,7 +51,7 @@ const Navigation = () => {
               Follow Elite
             </DropdownToggle>
             <DropdownMenu right>
-              <DropdownItem><a href="https://twitter.com/TheEliteMedia_" target="_blank">Twitter</a></DropdownItem>
+              <DropdownItem><a href="https://twitter.com/TheEliteMedia_" rel="noopener noreferrer" target="_blank">Twitter</a></DropdownItem>
               <DropdownItem>Instagram</DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>

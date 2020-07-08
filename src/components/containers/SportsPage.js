@@ -21,7 +21,7 @@ class SportsPage extends Component {
     return (
       <div className="home--content">
         <Navbar />
-        <img style={{ width: "100%" }} src={banner} />
+        <img alt="Banner for elite sports" style={{ width: "100%" }} src={banner} />
         <Container>
           <Row>
             <StoryList stories={stories} users={users} />
