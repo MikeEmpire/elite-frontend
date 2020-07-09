@@ -1,15 +1,16 @@
 import React, { Fragment } from "react";
-import { Button } from 'reactstrap';
+import { Button } from "reactstrap";
 
-import Editor from './Editor';
+import Editor from "./Editor";
 import StoryForm from "./StoryForm";
-import StoryPreview from './StoryPreview';
+import StoryPreview from "./StoryPreview";
+import ListStoryFormatter from '../containers/ListStoryFormatter';
 
 const ManageStory = (props) => {
   const { state, auth, extra } = props;
   const { readyToSubmit, handleState, handleUpload } = extra;
-  const handleFunc = { handleState, handleUpload }
-  const { showPreview, body } = state;
+  const handleFunc = { handleState, handleUpload };
+  const { showPreview, body, storyType } = state;
   return showPreview ? (
     <StoryPreview storyInfo={state} author={auth} />
   ) : (
@@ -23,7 +24,11 @@ const ManageStory = (props) => {
         </Button>
       )}
       <StoryForm formData={state} handleFunc={handleFunc} />
-      <Editor stateContent={body} handleChange={handleState} />
+      {storyType === "Default" ? (
+        <Editor stateContent={body} handleChange={handleState} />
+      ) : (
+        <ListStoryFormatter />
+      )}
     </Fragment>
   );
 };

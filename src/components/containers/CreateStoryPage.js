@@ -23,6 +23,7 @@ class CreateStoryPage extends Component {
     subtitle: "",
     category: "",
     image: "",
+    storyType: "Default",
     showPreview: false,
     loading: false,
   };

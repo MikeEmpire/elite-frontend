@@ -12,7 +12,7 @@ const options = STORY_CATEGORIES.map((category) => (
 const StoryForm = (props) => {
   const { formData, handleFunc } = props;
   const { handleState, handleUpload } = handleFunc;
-  const { title, image, subtitle, category } = formData;
+  const { title, image, subtitle, category, storyType } = formData;
   return (
     <Form>
       <FormGroup>
@@ -67,6 +67,14 @@ const StoryForm = (props) => {
           <option value=""></option>
           {options}
         </Input>
+      </FormGroup>
+      <FormGroup>
+        <Label>Story Type</Label>
+        <Input
+          type="select"
+          onChange={e => handleState("storyType", e.target.value)}
+          value={storyType}
+          />
       </FormGroup>
     </Form>
   );
