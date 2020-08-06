@@ -12,6 +12,7 @@
     "html-react-parser": "^0.13.0",
     "immutability-helper": "^3.1.1",
     "jodit-react": "^1.0.42",
+    "node-sass": "^4.14.1",
     "notistack": "^0.3.4",
     "react": "^16.13.1",
     "react-aws-s3": "^1.3.0",
@@ -50,8 +51,10 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "node-sass": "^4.14.1"
-  },
-  "proxy": "https://elite-api.michaelolie.com"
+  "devDependencies": {},
+  "proxy": "https://elite-api.michaelolie.com",
+  "main": "index.js",
+  "repository": "https://github.com/MikeEmpire/elite-frontend",
+  "author": "Mike <aolie94@gmail.com>",
+  "license": "MIT"
 }
